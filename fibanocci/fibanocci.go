@@ -17,3 +17,9 @@ func Sequence(limit int) string {
 	}
 	return q
 }
+
+func Infinite() {
+	for {
+		fmt.Println("Infinite")
+	}
+}
