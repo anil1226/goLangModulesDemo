@@ -2,11 +2,15 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/slices"
 )
 
 func init() {
 	fmt.Println("Main module 1st init")
+}
+
+func hello(b ...int) {
+	//fmt.Println("a :", a)
+	fmt.Println("b:", b)
 }
 
 func main() {
@@ -16,5 +20,6 @@ func main() {
 	// fmt.Println("Fibonacci sequence: ", fibanocci.Sequence(10))
 	//fibanocci.Infinite()
 	//slices.Testswitch()
-	slices.DemoSlice()
+	// slices.DemoSlice()
+	hello()
 }

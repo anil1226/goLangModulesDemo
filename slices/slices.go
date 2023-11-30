@@ -3,6 +3,8 @@ package slices
 import (
 	"fmt"
 	"math/rand"
+	"reflect"
+	"unsafe"
 )
 
 func Testswitch() {
@@ -35,7 +37,7 @@ func DemoSlice() {
 	fmt.Println("Sliced Capacity:", cap(slicedp))
 	fmt.Println("Sliced Array:", slicedp)
 
-	slicecopy := make([]string, len(slicedp))
+	slicecopy := make([]string, len(slicedp), 20)
 
 	copy(slicecopy, slicedp)
 
@@ -48,4 +50,23 @@ func DemoSlice() {
 	slicecopy = append(slicecopy[:1], slicecopy[2:]...)
 
 	fmt.Println("removed Slice:", slicecopy)
+	hdr := (*reflect.SliceHeader)(unsafe.Pointer(&slicecopy))
+
+	data := *(*[4]int)(unsafe.Pointer(hdr.Data))
+	fmt.Println("* Value", hdr, data)
+	addTerra(slicecopy)
+	fmt.Println("added terra:", slicecopy)
+}
+
+func addTerra(slicecopy []string) {
+	fmt.Println("in addTerra Copy Length:", len(slicecopy))
+	fmt.Println("in addTerra Copy Capacity:", cap(slicecopy))
+	hdr := (*reflect.SliceHeader)(unsafe.Pointer(&slicecopy))
+
+	data := *(*[4]int)(unsafe.Pointer(hdr.Data))
+	fmt.Println("in addTerra * Value", hdr, data)
+	// fmt.Println("in addTerra Copy Array:", slicecopy)
+	slicecopy = append(slicecopy, "Earth")
+	//slicecopy[0] = "Earth"
+	fmt.Println("added terra:", slicecopy)
 }
