@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/variadic"
+	"goModDemo/maps"
 )
 
 func init() {
@@ -23,11 +23,13 @@ func main() {
 	//slices.Testswitch()
 	// slices.DemoSlice()
 	//hello()
-	variadic.Find(1, 2, 3)
+	// variadic.Find(1, 2, 3)
 
-	variadic.Find(4, 1, 2, 3, 4)
+	//variadic.Find(4, 1, 2, 3, 4)
 
-	nums := []int{2, 6, 1, 2}
+	// nums := []int{2, 6, 1, 2}
 
-	variadic.Find(6, nums...)
+	// variadic.Find(6, nums...)
+
+	maps.Create()
 }
