@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/maps"
+	"goModDemo/strings"
 )
 
 func init() {
@@ -31,5 +31,10 @@ func main() {
 
 	// variadic.Find(6, nums...)
 
-	maps.Create()
+	//maps.Create()
+
+	strings.Run()
+
+	h := "hello"
+	fmt.Println(strings.Convert(([]rune(h))))
 }
