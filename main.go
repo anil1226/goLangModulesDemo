@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"goModDemo/variadic"
 )
 
 func init() {
@@ -21,5 +22,12 @@ func main() {
 	//fibanocci.Infinite()
 	//slices.Testswitch()
 	// slices.DemoSlice()
-	hello()
+	//hello()
+	variadic.Find(1, 2, 3)
+
+	variadic.Find(4, 1, 2, 3, 4)
+
+	nums := []int{2, 6, 1, 2}
+
+	variadic.Find(6, nums...)
 }
