@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"goModDemo/strings"
+	"goModDemo/structs"
 )
 
 func init() {
@@ -33,8 +34,25 @@ func main() {
 
 	//maps.Create()
 
-	strings.Run()
+	// strings.Run()
 
-	h := "hello"
-	fmt.Println(strings.Convert(([]rune(h))))
+	// h := "hello"
+	// fmt.Println(strings.Convert(([]rune(h))))
+
+	fmt.Println(strings.IsPalindrome("madam"))
+	fmt.Println(strings.IsPalindrome("anil"))
+
+	p := structs.Person{
+		Name: "Naveen",
+		Age:  50,
+		Address: structs.Address{
+			City:  "hyd",
+			State: "Te",
+		},
+	}
+
+	fmt.Println("Name:", p.Name)
+	fmt.Println("Age:", p.Age)
+	fmt.Println("City:", p.City)
+	fmt.Println("State:", p.State)
 }

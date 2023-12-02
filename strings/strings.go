@@ -1,6 +1,8 @@
 package strings
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func Run() {
 
@@ -20,4 +22,14 @@ func Run() {
 func Convert(str []rune) string {
 	str[0] = 'a'
 	return string(str)
+}
+
+func IsPalindrome(str string) bool {
+	revstr := ""
+
+	for i := len(str) - 1; i >= 0; i-- {
+		revstr += string(str[i])
+	}
+	return revstr == str
+
 }
