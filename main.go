@@ -2,18 +2,17 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/strings"
-	"goModDemo/structs"
+	"goModDemo/pointers"
 )
 
 func init() {
 	fmt.Println("Main module 1st init")
 }
 
-func hello(b ...int) {
-	//fmt.Println("a :", a)
-	fmt.Println("b:", b)
-}
+// func hello(b ...int) {
+// 	//fmt.Println("a :", a)
+// 	fmt.Println("b:", b)
+// }
 
 func main() {
 	// fmt.Println("Main module main func")
@@ -39,20 +38,22 @@ func main() {
 	// h := "hello"
 	// fmt.Println(strings.Convert(([]rune(h))))
 
-	fmt.Println(strings.IsPalindrome("madam"))
-	fmt.Println(strings.IsPalindrome("anil"))
+	// fmt.Println(strings.IsPalindrome("madam"))
+	// fmt.Println(strings.IsPalindrome("anil"))
 
-	p := structs.Person{
-		Name: "Naveen",
-		Age:  50,
-		Address: structs.Address{
-			City:  "hyd",
-			State: "Te",
-		},
-	}
+	// p := structs.Person{
+	// 	Name: "Naveen",
+	// 	Age:  50,
+	// 	Address: structs.Address{
+	// 		City:  "hyd",
+	// 		State: "Te",
+	// 	},
+	// }
 
-	fmt.Println("Name:", p.Name)
-	fmt.Println("Age:", p.Age)
-	fmt.Println("City:", p.City)
-	fmt.Println("State:", p.State)
+	// fmt.Println("Name:", p.Name)
+	// fmt.Println("Age:", p.Age)
+	// fmt.Println("City:", p.City)
+	// fmt.Println("State:", p.State)
+
+	pointers.Demo()
 }
