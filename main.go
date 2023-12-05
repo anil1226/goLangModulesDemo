@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/structs"
+	"goModDemo/methods"
 )
 
 func init() {
@@ -56,5 +56,6 @@ func main() {
 	// fmt.Println("State:", p.State)
 
 	//pointers.Demo()
-	structs.View()
+	//structs.View()
+	methods.View()
 }
