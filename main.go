@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/methods"
+	"goModDemo/interfaces"
 )
 
 func init() {
@@ -57,5 +57,8 @@ func main() {
 
 	//pointers.Demo()
 	//structs.View()
-	methods.View()
+	//methods.View()
+
+	//interfaces.Vowels()
+	interfaces.Exam3()
 }
