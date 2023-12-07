@@ -1,13 +1,10 @@
 package main
 
-import (
-	"fmt"
-	"goModDemo/interfaces"
-)
+import "goModDemo/goroutines"
 
-func init() {
-	fmt.Println("Main module 1st init")
-}
+// func init() {
+// 	fmt.Println("Main module 1st init")
+// }
 
 // func hello(b ...int) {
 // 	//fmt.Println("a :", a)
@@ -60,5 +57,7 @@ func main() {
 	//methods.View()
 
 	//interfaces.Vowels()
-	interfaces.Exam3()
+	//interfaces.Exam3()
+
+	goroutines.Compare()
 }
