@@ -59,5 +59,5 @@ func main() {
 	//interfaces.Vowels()
 	//interfaces.Exam3()
 
-	goroutines.Compare()
+	goroutines.EvenOrNot()
 }
