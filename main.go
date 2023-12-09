@@ -1,6 +1,6 @@
 package main
 
-import "goModDemo/goroutines"
+import "goModDemo/errorhandling"
 
 // func init() {
 // 	fmt.Println("Main module 1st init")
@@ -59,5 +59,7 @@ func main() {
 	//interfaces.Vowels()
 	//interfaces.Exam3()
 
-	goroutines.EvenOrNot()
+	//goroutines.EvenOrNot()
+
+	errorhandling.Test()
 }
