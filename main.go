@@ -1,6 +1,9 @@
 package main
 
-import "goModDemo/errorhandling"
+import (
+	"fmt"
+	"goModDemo/buffers"
+)
 
 // func init() {
 // 	fmt.Println("Main module 1st init")
@@ -61,5 +64,8 @@ func main() {
 
 	//goroutines.EvenOrNot()
 
-	errorhandling.Test()
+	//errorhandling.Test()
+
+	fmt.Println(buffers.PrimeNumber(100))
+
 }
