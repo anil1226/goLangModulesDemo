@@ -2,10 +2,15 @@ package maps
 
 import "fmt"
 
-func Create() {
+type employee struct {
+	salary   int
+	location string
+}
+
+func Create() map[string]employee {
 	// bikes := map[string]string{}
 
-	// bikes["make"] = "Honda"
+	// bike s["make"] = "Honda"
 	// bikes["model"] = "Shine"
 
 	// if value, ok := bikes["make"]; ok {
@@ -13,11 +18,6 @@ func Create() {
 	// }
 
 	// fmt.Println(bikes)
-
-	type employee struct {
-		salary   int
-		location string
-	}
 
 	emp1 := employee{
 		salary:   10000,
@@ -38,5 +38,6 @@ func Create() {
 		fmt.Println(key, value.salary, value.location)
 	}
 
-	fmt.Println(employeemap)
+	//fmt.Println(employeemap)
+	return employeemap
 }
