@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/buffers"
+	"goModDemo/maps"
+	"time"
 )
 
 // func init() {
@@ -66,6 +67,20 @@ func main() {
 
 	//errorhandling.Test()
 
-	fmt.Println(buffers.PrimeNumber(100))
+	//goroutines.ApiCall()
+
+	//fmt.Println(buffers.PrimeNumber(100))
+
+	//maps.MJSON()
+
+	ti := time.Now()
+
+	//time.Sleep(5 * time.Second)
+
+	//fmt.Println(strings.IsPalindrome2("madam"))
+
+	maps.MJSON()
+
+	fmt.Println(time.Since(ti))
 
 }
