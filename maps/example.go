@@ -14,7 +14,81 @@ type Home struct {
 	//Detail map[string]string `json:"det"`
 }
 
+//go:generate mockgen -destination=mocks/mock_iPostgresDB.go -source example.go
+
+type iPostgresDB interface {
+	PostRecord(Home) (sql.Result, error)
+	GetRecord() ([]Home, error)
+	DelRecord() (sql.Result, error)
+}
+
+type PostgresDB struct {
+	db *sql.DB
+}
+
+func newDB() (iPostgresDB, error) {
+	connStr := "user=postgres dbname=postgres password=123456 sslmode=disable"
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		return nil, err
+	}
+
+	defer db.Close()
+
+	return &PostgresDB{db}, nil
+}
+
+func (p PostgresDB) PostRecord(h Home) (sql.Result, error) {
+
+	row1, err := p.db.Exec(" insert into public.home (state, zip) values ($1, $2)", h.State, h.Zip)
+
+	if err != nil {
+		return nil, err
+	}
+	return row1, nil
+}
+
+func (p PostgresDB) GetRecord() ([]Home, error) {
+	rows, err := p.db.Query("SELECT  * from public.home")
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	home := make([]Home, 0)
+
+	for rows.Next() {
+		var r Home
+		err := rows.Scan(&r.State, &r.Zip)
+		if err != nil {
+			log.Print(err)
+		}
+		home = append(home, r)
+	}
+
+	return home, nil
+
+}
+
+func (p PostgresDB) DelRecord() (sql.Result, error) {
+	res1, err := p.db.Exec("delete from public.home")
+	if err != nil {
+		return nil, err
+	}
+
+	return res1, nil
+}
+
 func MJSON() {
+
+	db, err := newDB()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	slc := make([]Home, 0)
 
 	// m1 := make(map[string]string, 0)
@@ -35,75 +109,15 @@ func MJSON() {
 
 	slc = append(slc, slc2...)
 
-	connStr := "user=postgres dbname=postgres password=123456 sslmode=disable"
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer db.Close()
-
-	row1, err := db.Exec(" insert into public.home (state, zip) values ($1, $2)", slc[2].State, slc[2].Zip)
-
-	if err != nil {
-		log.Print(err)
-	}
-	fmt.Println(row1.LastInsertId())
-
-	// slcjson, err := json.Marshal(slc)
-	// if err != nil {
-	// 	log.Print(err)
-	// }
-
-	// if err = os.Remove("123.json"); err != nil {
-	// 	log.Print(err)
-	// }
-
-	// err = os.WriteFile("123.json", slcjson, fs.FileMode(0644))
-	// if err != nil {
-	// 	log.Print(err)
-	// }
-
-	// sbyte, err := os.ReadFile("123.json")
-	// if err != nil {
-	// 	log.Print(err)
-	// }
-
-	// home := make([]Home, 0)
-
-	// err = json.Unmarshal(sbyte, &home)
-	// if err != nil {
-	// 	log.Print(err)
-	// }
-
-	// fmt.Println(home)
-
-	rows, err := db.Query("SELECT  * from public.home")
-
+	pos, err := db.PostRecord(slc[0])
 	if err != nil {
 		log.Print(err)
 	}
 
-	defer rows.Close()
+	fmt.Println(pos.RowsAffected())
 
-	home := make([]Home, 0)
+}
 
-	for rows.Next() {
-		var r Home
-		err := rows.Scan(&r.State, &r.Zip)
-		if err != nil {
-			log.Print(err)
-		}
-		home = append(home, r)
-	}
-
-	fmt.Println(home)
-
-	res1, err := db.Exec("delete from public.home")
-	if err != nil {
-		log.Print(err)
-	}
-
-	fmt.Println(res1.RowsAffected())
-
+func WrapperFunc(db iPostgresDB, h Home) (sql.Result, error) {
+	return db.PostRecord(h)
 }
