@@ -32,3 +32,11 @@ func TestIsPalindrome2(t *testing.T) {
 	})
 
 }
+
+func BenchmarkIsPalindrome2(b *testing.B) {
+
+	for range b.N {
+		strings.IsPalindrome2("madam")
+	}
+
+}
