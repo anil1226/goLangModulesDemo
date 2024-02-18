@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"goModDemo/maps"
 	"time"
 )
 
@@ -79,7 +78,7 @@ func main() {
 
 	//fmt.Println(strings.IsPalindrome2("madam"))
 
-	maps.MJSON()
+	//maps.MJSON()
 
 	fmt.Println(time.Since(ti))
 
